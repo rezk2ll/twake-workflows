@@ -9,6 +9,7 @@ on:
 jobs:
   default-nvmrc:
     strategy:
+      fail-fast: false
       matrix:
         dir: [test/npm, test/pnpm, test/yarn]
     uses: ./.github/workflows/node-ci.yml
@@ -16,6 +17,7 @@ jobs:
       working-directory: ${{ matrix.dir }}
   node-matrix:
     strategy:
+      fail-fast: false
       matrix:
         node-version: ['20', '24']
     uses: ./.github/workflows/node-ci.yml
