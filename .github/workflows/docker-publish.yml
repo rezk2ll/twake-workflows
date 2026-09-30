@@ -44,7 +44,7 @@ jobs:
     timeout-minutes: 30
     # github.workflow is the caller's name here; the suffix keeps this group distinct from a caller's own group
     concurrency:
-      group: ${{ github.workflow }}-docker-publish-${{ inputs.image }}-${{ github.event_name == 'pull_request' && github.ref || github.run_id }}
+      group: ${{ github.workflow }}-docker-publish-${{ inputs.image }}-${{ inputs.context }}-${{ inputs.file }}-${{ inputs.platforms }}-${{ inputs.push }}-${{ github.event_name == 'pull_request' && github.ref || github.run_id }}
       cancel-in-progress: true
     steps:
       - name: Checkout
