@@ -1,0 +1,25 @@
+name: Test node-ci
+
+on:
+  push:
+    branches: [test/reusable-workflows]
+  pull_request:
+  workflow_dispatch:
+
+jobs:
+  default-nvmrc:
+    strategy:
+      matrix:
+        dir: [test/npm, test/pnpm, test/yarn]
+    uses: ./.github/workflows/node-ci.yml
+    with:
+      working-directory: ${{ matrix.dir }}
+  node-matrix:
+    strategy:
+      matrix:
+        node-version: ['20', '24']
+    uses: ./.github/workflows/node-ci.yml
+    with:
+      working-directory: test/pnpm
+      node-version: ${{ matrix.node-version }}
+      scripts: test

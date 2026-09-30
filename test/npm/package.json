@@ -1,0 +1,3 @@
+{ "name": "fx-npm", "private": true, "version": "1.0.0",
+  "scripts": { "lint": "node -e \"require('is-number'); console.log('lint ok')\"", "test": "node -e \"console.log('test ok', process.version)\"", "build": "node -e \"console.log('build ok')\"" },
+  "dependencies": { "is-number": "7.0.0" } }
