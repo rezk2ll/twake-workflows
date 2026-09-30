@@ -1,0 +1,28 @@
+name: Test docker-publish
+
+on:
+  push:
+    branches: [test/docker-publish]
+
+permissions:
+  contents: read
+  packages: write
+
+jobs:
+  multi-arch-no-push:
+    uses: ./.github/workflows/docker-publish.yml
+    with:
+      image: ghcr.io/rezk2ll/twake-workflows-test
+      context: test/docker
+      platforms: linux/amd64,linux/arm64
+      push: false
+    secrets:
+      BUILD_SECRETS: probe=ok
+  push-ghcr:
+    uses: ./.github/workflows/docker-publish.yml
+    with:
+      image: ghcr.io/rezk2ll/twake-workflows-test
+      context: test/docker
+      tags: type=raw,value=test
+    secrets:
+      BUILD_SECRETS: probe=ok
